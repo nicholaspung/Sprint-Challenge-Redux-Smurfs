@@ -36,11 +36,20 @@ export const getSmurfs = () => dispatch => {
   dispatch({ type: FETCH_SMURF_START });
   axios.get('http://localhost:3333/smurfs')
     .then(res => dispatch({ type: FETCH_SMURF_SUCCESS, payload: res.data }))
-    .catch(err => console.log(err))
+    .catch(err => {
+      dispatch({ type: FETCH_SMURF_FAIL })
+      console.log(err)
+    })
 }
 
-export const addSmurf = () => dispatch => {
-  return {}
+export const addSmurf = smurf => dispatch => {
+  dispatch({ type: ADD_SMURF_START });
+  axios.post('http://localhost:3333/smurfs', smurf)
+    .then(res => dispatch({ type: ADD_SMURF_SUCCESS, payload: res.data }))
+    .catch(err => {
+      dispatch({ type: FETCH_SMURF_FAIL })
+      console.log(err)
+    })
 }
 
 export const updateSmurf = () => dispatch => {
