@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateSmurf } from '../actions';
+import { updateSmurf, deleteSmurf } from '../actions';
 
 class Smurf extends React.Component {
     state = {
@@ -31,6 +31,10 @@ class Smurf extends React.Component {
         this.props.updateSmurf(this.state.newSmurf)
     }
 
+    deleteSmurf = () => {
+        this.props.deleteSmurf(this.state.smurf)
+    }
+
     render() {
         return (
             <div>
@@ -51,10 +55,11 @@ class Smurf extends React.Component {
                         Age: {this.state.smurf.age},
                         Height: {this.state.smurf.height}
                         <button onClick={this.changeToInputForms}>update me</button>
+                        <button onClick={this.deleteSmurf}>delete me</button>
                     </div>)}
             </div>
         )
     }
 }
 
-export default connect(null, { updateSmurf })(Smurf);
+export default connect(null, { updateSmurf, deleteSmurf })(Smurf);

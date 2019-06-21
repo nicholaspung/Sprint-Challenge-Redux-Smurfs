@@ -57,6 +57,9 @@ export const updateSmurf = smurf => dispatch => {
     .catch(err => dispatch({ type: UPDATE_SMURF_FAIL, payload: err.response.data }))
 }
 
-export const deleteSmurf = () => dispatch => {
-  return {}
+export const deleteSmurf = smurf => dispatch => {
+  dispatch({ type: DELETE_SMURF_START });
+  axios.delete(`http://localhost:3333/smurfs/${smurf.id}`, smurf)
+    .then(res => dispatch({ type: DELETE_SMURF_SUCCESS, payload: res.data }))
+    .catch(err => dispatch({ type: DELETE_SMURF_FAIL, payload: err.response.data }))
 }
