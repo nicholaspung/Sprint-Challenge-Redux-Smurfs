@@ -46,12 +46,15 @@ export const addSmurf = smurf => dispatch => {
   axios.post('http://localhost:3333/smurfs', smurf)
     .then(res => dispatch({ type: ADD_SMURF_SUCCESS, payload: res.data }))
     .catch(err => {
-      dispatch({ type: FETCH_SMURF_FAIL, payload: err })
+      dispatch({ type: ADD_SMURF_FAIL, payload: err.response.data })
     })
 }
 
-export const updateSmurf = () => dispatch => {
-  return {}
+export const updateSmurf = smurf => dispatch => {
+  dispatch({ type: UPDATE_SMURF_START });
+  axios.put(`http://localhost:3333/smurfs/${smurf.id}`, smurf)
+    .then(res => dispatch({ type: UPDATE_SMURF_SUCCESS, payload: res.data }))
+    .catch(err => dispatch({ type: UPDATE_SMURF_FAIL, payload: err.response.data }))
 }
 
 export const deleteSmurf = () => dispatch => {

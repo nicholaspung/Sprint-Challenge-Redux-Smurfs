@@ -21,7 +21,9 @@ class App extends Component {
         <h1>SMURFS! 2.0 W/ Redux</h1>
         <div>Welcome to your Redux version of Smurfs!</div>
         {this.props.smurfs.map(smurf => <Smurf smurf={smurf} key={smurf.id}/>)}
+        <br />
         <AddSmurf />
+        {this.props.error && <p>{this.props.error.Error}</p>}
       </div>
     );
   }
@@ -29,7 +31,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    smurfs: state.smurfs
+    smurfs: state.smurfs,
+    error: state.error
   }
 }
 

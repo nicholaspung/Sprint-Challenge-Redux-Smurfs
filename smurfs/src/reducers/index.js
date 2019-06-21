@@ -54,13 +54,15 @@ export default function(state = initializeState, action) {
     case FETCH_SMURF_START:
       return {
         ...state,
-        fetchingSmurfs: true
+        fetchingSmurfs: true,
+        error: ''
       }
     case FETCH_SMURF_SUCCESS:
       return {
         ...state,
         fetchingSmurfs: false,
-        smurfs: action.payload
+        smurfs: action.payload,
+        error: ''
       }
     case FETCH_SMURF_FAIL:
       return {
@@ -71,13 +73,15 @@ export default function(state = initializeState, action) {
     case ADD_SMURF_START:
       return {
         ...state,
-        addingSmurf: true
+        addingSmurf: true,
+        error: ''
       }
     case ADD_SMURF_SUCCESS:
       return {
         ...state,
         addingSmurf: false,
-        smurfs: action.payload
+        smurfs: action.payload,
+        error: ''
       }
     case ADD_SMURF_FAIL:
       return {
@@ -86,11 +90,24 @@ export default function(state = initializeState, action) {
         error: action.payload
       }
     case UPDATE_SMURF_START:
-      return {}
+      return {
+        ...state,
+        updatingSmurf: true,
+        error: ''
+      }
     case UPDATE_SMURF_SUCCESS:
-      return {}
+      return {
+        ...state,
+        updatingSmurf: false,
+        smurfs: action.payload,
+        error: ''
+      }
     case UPDATE_SMURF_FAIL:
-      return {}
+      return {
+        ...state,
+        updatingSmurf: false,
+        error: action.payload
+      }
     case DELETE_SMURF_START:
       return {}
     case DELETE_SMURF_SUCCESS:

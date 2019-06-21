@@ -8,7 +8,8 @@ class AddSmurf extends React.Component {
             name: '',
             age: '',
             height: ''
-        }
+        },
+        showAddSmurfForm: false
     }
 
     onSubmitForm = e => {
@@ -32,14 +33,25 @@ class AddSmurf extends React.Component {
         })
     }
 
+    displayAddSmurf = e => {
+        if (e.target.checked) {
+            this.setState({ showAddSmurfForm: true })
+        } else {
+            this.setState({ showAddSmurfForm: false })
+        }
+    }
+
     render() {
         return (
-            <form onSubmit={this.onSubmitForm}>
-                <input placeholder="name" type="text" name="name" value={this.state.smurf.name} onChange={this.onInputChange} required/>
-                <input placeholder="age" type="number" name="age" value={this.state.smurf.age} onChange={this.onInputChange} required/>
-                <input placeholder="height" type="text" name="height" value={this.state.smurf.height} onChange={this.onInputChange} required/>
-                <button>add smurf</button>
-            </form>
+            <div>
+                Check box to add new Smurf!<input type="checkbox"onClick={e => this.displayAddSmurf(e)}/>
+                {this.state.showAddSmurfForm && <form onSubmit={this.onSubmitForm}>
+                    <input placeholder="name" type="text" name="name" value={this.state.smurf.name} onChange={this.onInputChange} required/>
+                    <input placeholder="age" type="number" name="age" value={this.state.smurf.age} onChange={this.onInputChange} required/>
+                    <input placeholder="height" type="text" name="height" value={this.state.smurf.height} onChange={this.onInputChange} required/>
+                    <button>add smurf</button>
+                </form>}
+            </div>
         );
     }
 }
