@@ -52,9 +52,16 @@ const initializeState = {
 export default function(state = initializeState, action) {
   switch (action.type) {
     case FETCH_SMURF_START:
-      return {}
+      return {
+        ...state,
+        fetchingSmurfs: true
+      }
     case FETCH_SMURF_SUCCESS:
-      return {}
+      return {
+        ...state,
+        fetchingSmurfs: false,
+        smurfs: action.payload
+      }
     case FETCH_SMURF_FAIL:
       return {}
     case ADD_SMURF_START:
