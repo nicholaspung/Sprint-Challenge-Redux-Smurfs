@@ -63,13 +63,28 @@ export default function(state = initializeState, action) {
         smurfs: action.payload
       }
     case FETCH_SMURF_FAIL:
-      return {}
+      return {
+        ...state,
+        fetchingSmurfs: false,
+        error: action.payload
+      }
     case ADD_SMURF_START:
-      return {}
+      return {
+        ...state,
+        addingSmurf: true
+      }
     case ADD_SMURF_SUCCESS:
-      return {}
+      return {
+        ...state,
+        addingSmurf: false,
+        smurfs: action.payload
+      }
     case ADD_SMURF_FAIL:
-      return {}
+      return {
+        ...state,
+        addingSmurf: false,
+        error: action.payload
+      }
     case UPDATE_SMURF_START:
       return {}
     case UPDATE_SMURF_SUCCESS:
